@@ -114,11 +114,12 @@ function renderFace(card,type,face){
   state.type=old;
   return h;
 }
-function preview(){
+function previewV3(){
   var c=C(),type=state.type;
   var f=renderFace(c,type,'front'),b=renderFace(c,type,'back');
   $('#stage').innerHTML=state.side==='front'?f:state.side==='back'?b:f+b;
 }
+window.preview=previewV3;
 
 function arrowPolygon(dir,inverted){
   var actual=dir;
@@ -195,7 +196,7 @@ editor=function(){
       inp.oninput=function(){
         var v=Math.max(0,Math.min(99,parseInt(inp.value||'0',10)));
         c.map.arrows[k][2]=v;
-        preview();
+        window.preview();
       };
     });
   }
